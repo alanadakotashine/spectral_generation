@@ -199,7 +199,7 @@ end
         clear Xy
     end
 
-    function[rG] = alterSpecGap(rG,targetSpec)
+    function[rG] = criticalCutRounding(rG,targetSpec)
         normLapY = computeNormalizedLaplacian(rG);
         [e2,lambda2] = genSecondCutAndEig(normLapY);
         count = 0;
@@ -362,7 +362,7 @@ end
         [e2,lambda2] = genSecondCutAndEig(normLapY);
         while lambda2-targetSpec(2) > .0001 && numCrossBip >= 1 && not_succ == 1
             %disp('iteration of drive down spec gap');
-            [A] = alterSpecGap(A,Spec);
+            [A] = criticalCutRounding(A,Spec);
             A(A<.0000000000001)=0;
             normLap = computeNormalizedLaplacian(A);
             lambda2_prev = lambda2;
@@ -372,9 +372,19 @@ end
             if abs(lambda2-lambda2_prev)<.000000001
                 not_succ = 0;
             end
+            if(numCrossBip==0)
+                B = largestcomponent(A);
+                A = A(B,B);
+                normLapAfterCutFix = computeNormalizedLaplacian(A);
+                [Xy,prevspecNormLap,perm_1] = compSortedSpectrum(normLapAfterCutFix);
+                [fiedCut_Vertices,fiedCutComp_Vertices] = genkthCut(Xy,perm_1,2);
+                crossEdges = A(fiedCut_Vertices,fiedCutComp_Vertices);
+                numCrossBip = sum(sum(crossEdges));
+            end
             %if the fiedler cut is still an extrmeley unbalanced one, cut
             %the small part off and proceed
-            while min(size(fiedCut_Vertices,2),size(fiedCutComp_Vertices,2)) < 5 & while min(size(fiedCut_Vertices,2),size(fiedCutComp_Vertices,2)) > 0
+            %while min(size(fiedCut_Vertices,2),size(fiedCutComp_Vertices,2)) < 5 & while min(size(fiedCut_Vertices,2),size(fiedCutComp_Vertices,2)) > 0
+            while min(size(fiedCut_Vertices,2),size(fiedCutComp_Vertices,2)) < 5
                 if size(fiedCut_Vertices,2) < size(fiedCutComp_Vertices,2)
                     A= A(fiedCutComp_Vertices,fiedCutComp_Vertices);
                 else
