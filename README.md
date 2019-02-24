@@ -11,7 +11,10 @@ https://www.mathworks.com/matlabcentral/fileexchange/30926-largest-component
 
 heap and hash table implementations
 https://github.com/armon/c-minheap-indirect
+modifications made to the heap implementation are: table is stored as a pointer instead of pointer of pointers with 
+all functions made to reflect this and default comparator compares floats instead of ints.
 https://troydhanson.github.io/uthash/
+
 
 To compile mex files run 
 
