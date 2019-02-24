@@ -12,7 +12,9 @@
 
 
 
-///Structure for hashtable entry
+///Structure for hashtable entry. Hashtable contains a struct for each value that can be added to the eigenScore.
+//each value can corresond to multiple edges. edgeLocs contains the pairs for corresponding to all edges with score
+//equal to value. current stores the index of the edge we are considering. 
 typedef struct value_edgeLocs_entry {
     double id;
     int* edgeLocs;
