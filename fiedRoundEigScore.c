@@ -24,13 +24,13 @@ typedef struct value_edgeLocs_entry {
     UT_hash_handle hh;
 } value_edgeLocs_entry;
 
-// Structure for a single heap entry
+// Structure for a single heap entry. Heap is just used for sorting. 
 typedef struct heap_entry {
     void* key;   // Key for this entry
     void* value; // Value for this entry
 } heap_entry;
 
-
+//The compare function must take floats.
 typedef struct heap {
     int (*compare_func)(void*, void*); // The key comparison function to use
     int active_entries;  // The number of entries in the heap
