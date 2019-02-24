@@ -9,10 +9,12 @@ https://www.mathworks.com/matlabcentral/fileexchange/45741-read-gml
 to compute largest component
 https://www.mathworks.com/matlabcentral/fileexchange/30926-largest-component
 
-heap and hash table implementations
+heap implementation
 https://github.com/armon/c-minheap-indirect
 modifications made to the heap implementation are: table is stored as a pointer instead of pointer of pointers with 
 all functions made to reflect this and default comparator compares floats instead of ints.
+
+hash table implementation
 https://troydhanson.github.io/uthash/
 
 
