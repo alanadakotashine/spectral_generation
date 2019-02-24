@@ -30,7 +30,9 @@ typedef struct heap_entry {
     void* value; // Value for this entry
 } heap_entry;
 
-//The compare function must take floats.
+//The compare function must take floats, the default compare function in the heap implementation linked in the read me
+//compares ints. Note table is a pointer, not a pointer of pointers as in the heap implementation in the read me. 
+//The heap implementation in the read me must be changed to store the table as a pointer
 typedef struct heap {
     int (*compare_func)(void*, void*); // The key comparison function to use
     int active_entries;  // The number of entries in the heap
