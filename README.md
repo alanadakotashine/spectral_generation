@@ -11,7 +11,7 @@ https://www.mathworks.com/matlabcentral/fileexchange/30926-largest-component
 
 heap implementation
 https://github.com/armon/c-minheap-indirect
-modifications made to the heap implementation are: table is stored as a pointer instead of pointer of pointers with 
+modifications made to the heap implementation are: table is stored as a pointer instead of pointer to a pointer with 
 all functions made to reflect this and default comparator compares floats instead of ints.
 
 hash table implementation
